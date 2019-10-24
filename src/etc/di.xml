@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Omikron\FactfinderNG\Api\Config\NGCommunicationConfigInterface" type="Omikron\FactfinderNG\Model\Config\CommunicationConfig" />
+    <preference for="Omikron\Factfinder\Api\ClientInterface" type="Omikron\FactfinderNG\Model\Client" />
+
+    <type name="Magento\Framework\View\Asset\Minification">
+        <plugin name="ff.ng.asset.minification" type="Omikron\FactfinderNG\Plugin\AssetMinificationPlugin" />
+    </type>
+    <type name="Omikron\Factfinder\Model\Api\Tracking">
+        <plugin name="ff.modify.tracking" type="Omikron\FactfinderNG\Plugin\Api\Tracking" />
+    </type>
+    <type name="Omikron\Factfinder\Model\Api\PushImport">
+        <plugin name="ff.modify.import" type="Omikron\FactfinderNG\Plugin\Api\PushImport" />
+    </type>
+    <type name="Omikron\Factfinder\Model\Api\UpdateFieldRoles">
+        <plugin name="ff.modify.update_field_roles" type="Omikron\FactfinderNG\Plugin\Api\UpdateFieldRoles" />
+    </type>
+</config>

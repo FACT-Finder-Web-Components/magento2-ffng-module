@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Omikron\Factfinder\Model\Config\CommunicationParametersProvider">
+        <arguments>
+            <argument name="parametersSource" xsi:type="array">
+                <item name="communication" xsi:type="object">Omikron\FactfinderNG\Api\Config\NGCommunicationConfigInterface</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

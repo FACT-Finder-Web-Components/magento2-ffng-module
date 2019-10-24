@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="factfinder">
+            <group id="general">
+                <field id="authentication_prefix">
+                    <depends>
+                        <field negative="1" id="factfinder/advanced/version">ng</field>
+                    </depends>
+                </field>
+                <field id="authentication_postfix">
+                    <depends>
+                        <field negative="1" id="factfinder/advanced/version">ng</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="advanced">
+                <field id="version">
+                    <options>
+                        <option label="NG">ng</option>
+                    </options>
+                </field>
+            </group>
+            <group id="data_transfer">
+                <field id="ff_push_import_type" translate="label" type="multiselect" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pushed import types</label>
+                    <options>
+                        <option label="Data">search</option>
+                        <option label="Suggest">suggest</option>
+                    </options>
+                    <depends>
+                        <field id="ff_push_import_enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
