@@ -15,4 +15,15 @@
     <type name="Omikron\Factfinder\Model\Api\UpdateFieldRoles">
         <plugin name="ff.modify.update_field_roles" type="Omikron\FactfinderNG\Plugin\Api\UpdateFieldRoles" />
     </type>
+    <type name="Omikron\FactfinderNG\Model\Client">
+        <arguments>
+            <argument name="clientFactory" xsi:type="object">Omikron\FactfinderNG\HTTP\ClientFactory</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Omikron\FactfinderNG\HTTP\ClientFactory" type="Magento\Framework\HTTP\ClientFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Omikron\FactfinderNG\Model\HTTP\Client\Curl</argument>
+        </arguments>
+    </virtualType>
 </config>
