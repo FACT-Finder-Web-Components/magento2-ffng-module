@@ -48,7 +48,6 @@ class Client implements ApiClientInterface
         $httpClient = $this->httpClientFactory->create();
 
         try {
-            $httpClient->setOption(CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
             $httpClient->addHeader('Accept', 'application/json');
             $httpClient->addHeader('Authorization', $this->credentials ?? $this->getAuth($this->authConfig));
 
