@@ -8,7 +8,7 @@ class Curl extends \Magento\Framework\HTTP\Client\Curl
 {
     protected function parseHeaders($ch, $data)
     {
-        parent::parseHeaders($ch, preg_replace('# ([0-9]{3})(\s*)$#', ' $1 STATUS-MESSAGE$2', $data));
+        parent::parseHeaders($ch, preg_replace('#^HTTP/(.*?) ([0-9]{3})(\s*)$#', 'HTTP/$1 $2 STATUS-MESSAGE$3', $data));
         return strlen($data);
     }
 }
