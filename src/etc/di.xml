@@ -26,4 +26,11 @@
             <argument name="instanceName" xsi:type="string">Omikron\FactfinderNG\Model\HTTP\Client\Curl</argument>
         </arguments>
     </virtualType>
+    <type name="Omikron\FactfinderNG\ViewModel\CategoryPath">
+        <arguments>
+            <argument name="initial" xsi:type="array">
+                <item name="navigation" xsi:type="string">navigation=true</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
