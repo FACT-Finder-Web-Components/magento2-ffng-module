@@ -50,17 +50,10 @@ class CategoryPath
         switch ($this->scopeConfig->getValue('factfinder/advanced/version'))  {
             case 'ng':
                 $value[] = sprintf('filter=%s', urlencode($this->param . ':' . implode('/', $categories)));
-                break;
+                return implode(',', $value);
             default:
-                $path = 'ROOT';
-                foreach ($categories as $item) {
-                    $value[] = vsprintf('fiter%s%s=%s', array_map('urlencode', [$this->param, $path, $item]));
-                    $path    = "{$path}/{$item}";
-                }
-                break;
+                return $proceed(...$params);
         }
-
-        return implode(',', $value);
     }
 
     protected function getCategoryPath(Category $category): array
