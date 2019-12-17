@@ -3,8 +3,8 @@
     <preference for="Omikron\FactfinderNG\Api\Config\NGCommunicationConfigInterface" type="Omikron\FactfinderNG\Model\Config\CommunicationConfig" />
     <preference for="Omikron\Factfinder\Api\ClientInterface" type="Omikron\FactfinderNG\Model\Client" />
 
-    <type name="Magento\Framework\View\Asset\Minification">
-        <plugin name="ff.ng.asset.minification" type="Omikron\FactfinderNG\Plugin\AssetMinificationPlugin" />
+    <type name="Omikron\Factfinder\ViewModel\CategoryPath">
+        <plugin name="ff.ng.viewmodel.categorypath" type="Omikron\FactfinderNG\Plugin\ViewModel\CategoryPath" />
     </type>
     <type name="Omikron\Factfinder\Model\Api\Tracking">
         <plugin name="ff.modify.tracking" type="Omikron\FactfinderNG\Plugin\Api\Tracking" />
@@ -26,7 +26,7 @@
             <argument name="instanceName" xsi:type="string">Omikron\FactfinderNG\Model\HTTP\Client\Curl</argument>
         </arguments>
     </virtualType>
-    <type name="Omikron\FactfinderNG\ViewModel\CategoryPath">
+    <type name="Omikron\FactfinderNG\Plugin\ViewModel\CategoryPath">
         <arguments>
             <argument name="initial" xsi:type="array">
                 <item name="navigation" xsi:type="string">navigation=true</item>

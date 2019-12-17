@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Omikron\FactfinderNG\ViewModel;
+namespace Omikron\FactfinderNG\Plugin\ViewModel;
 
-use Magento\Catalog\Model\Category;
-use Magento\Framework\Registry;
-use Magento\Framework\View\Element\Block\ArgumentInterface;
+use Omikron\Factfinder\ViewModel\CategoryPath as ViewModel;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Registry;
+use Magento\Catalog\Model\Category;
 
-class CategoryPath implements ArgumentInterface
+class CategoryPath
 {
     /** @var Registry */
     private $registry;
@@ -35,7 +35,15 @@ class CategoryPath implements ArgumentInterface
         $this->initial = $initial;
     }
 
-    public function getValue(): string
+    /**
+     * @param ViewModel $subject
+     * @param callable $proceed
+     * @param mixed ...$params
+     *
+     * @return string
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function aroundGetValue(ViewModel $subject, callable $proceed, ...$params): string
     {
         $categories = $this->getCategoryPath($this->getCurrentCategory());
         $value = $this->initial;
