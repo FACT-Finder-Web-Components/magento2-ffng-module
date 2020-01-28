@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Omikron\FactfinderNG\Plugin\ViewModel;
 
-use Omikron\Factfinder\ViewModel\CategoryPath as ViewModel;
+use Magento\Catalog\Model\Category;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Registry;
-use Magento\Catalog\Model\Category;
+use Omikron\Factfinder\ViewModel\CategoryPath as ViewModel;
 
 class CategoryPath
 {
@@ -30,26 +30,26 @@ class CategoryPath
         array $initial = []
     ) {
         $this->scopeConfig = $scopeConfig;
-        $this->param = $param;
-        $this->registry = $registry;
-        $this->initial = $initial;
+        $this->param       = $param;
+        $this->registry    = $registry;
+        $this->initial     = $initial;
     }
 
     /**
      * @param ViewModel $subject
-     * @param callable $proceed
-     * @param mixed ...$params
+     * @param callable  $proceed
+     * @param mixed     ...$params
      *
      * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function aroundGetValue(ViewModel $subject, callable $proceed, ...$params): string
     {
-        $categories = $this->getCategoryPath($this->getCurrentCategory());
-        $value = $this->initial;
-        switch ($this->scopeConfig->getValue('factfinder/advanced/version'))  {
+        switch ($this->scopeConfig->getValue('factfinder/advanced/version')) {
             case 'ng':
-                $value[] = sprintf('filter=%s', urlencode($this->param . ':' . implode('/', $categories)));
+                $categories = $this->getCategoryPath($this->getCurrentCategory());
+                $value      = $this->initial;
+                $value[]    = sprintf('filter=%s', urlencode($this->param . ':' . implode('/', $categories)));
                 return implode(',', $value);
             default:
                 return $proceed(...$params);
