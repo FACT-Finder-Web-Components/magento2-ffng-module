@@ -5,16 +5,14 @@
             <group id="general">
                 <field id="authentication_prefix">
                     <depends>
-                        <field negative="1" id="factfinder/advanced/version">ng</field>
+                        <field negative="1" id="factfinder/general/version">ng</field>
                     </depends>
                 </field>
                 <field id="authentication_postfix">
                     <depends>
-                        <field negative="1" id="factfinder/advanced/version">ng</field>
+                        <field negative="1" id="factfinder/general/version">ng</field>
                     </depends>
                 </field>
-            </group>
-            <group id="advanced">
                 <field id="version">
                     <options>
                         <option label="NG">ng</option>
