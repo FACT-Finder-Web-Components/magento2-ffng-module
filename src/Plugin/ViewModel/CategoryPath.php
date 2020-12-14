@@ -56,14 +56,18 @@ class CategoryPath
         }
     }
 
-    protected function getCategoryPath(Category $category): array
+    protected function getCategoryPath(?Category $category): array
     {
+        $categories = $category ? $category->getParentCategories() : [];
+        usort($categories, function (Category $a, Category $b): int {
+            return $a->getLevel() - $b->getLevel();
+        });
         return array_map(function (Category $item): string {
             return (string) $item->getName();
-        }, $category->getParentCategories());
+        }, $categories);
     }
 
-    private function getCurrentCategory(): Category
+    protected function getCurrentCategory(): ?Category
     {
         return $this->registry->registry('current_category');
     }
