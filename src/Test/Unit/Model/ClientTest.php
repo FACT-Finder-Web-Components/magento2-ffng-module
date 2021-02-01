@@ -6,7 +6,9 @@ namespace Omikron\FactfinderNG\Model;
 
 use Magento\Framework\HTTP\ClientFactory;
 use Magento\Framework\HTTP\ClientInterface;
+use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\Serialize\SerializerInterface;
+use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Omikron\Factfinder\Api\Config\AuthConfigInterface;
 use Omikron\Factfinder\Exception\ResponseException;
 use Omikron\FactfinderNG\Model\Api\Credentials;
@@ -61,7 +63,6 @@ class ClientTest extends TestCase
         $response = '{"searchResult":{"breadCrumbTrailItems":[],"campaigns":[],"channel":"channel","fieldRoles":[]}}';
         $this->httpClientMock->method('getStatus')->willReturn(200);
         $this->httpClientMock->method('getBody')->willReturn($response);
-        $this->httpClientMock->expects($this->once())->method('setOption')->with(CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         $this->serializerMock->expects($this->once())->method('unserialize')->willReturn(json_decode($response, true));
 
         $response = $this->client->sendRequest('http://fake-ff-server.com/rest/v3/search/channel', []);
@@ -87,6 +88,21 @@ class ClientTest extends TestCase
         $this->assertArrayHasKey('Access-Control-Allow-Credentials', $response, 'Correct response in this case should contains contains response headers');
     }
 
+    public function test_handle_successful_tracking_requests()
+    {
+        $this->httpClientMock->method('getBody')->willReturn('OK');
+        $this->httpClientMock->method('getHeaders')->willReturn([]);
+        $this->httpClientMock->method('getStatus')->willReturn(200);
+
+        $client = (new ObjectManager($this))->getObject(Client::class, [
+            'clientFactory'      => $this->createConfiguredMock(ClientFactory::class, ['create' => $this->httpClientMock]),
+            'serializer'         => new Json(),
+            'credentialsFactory' => $this->credentialsFactoryMock,
+        ]);
+
+        $this->assertIsArray($client->sendRequest('http://fake-ff-server.com/rest/v3/tracking/cart', []));
+    }
+
     /**
      * @testdox The API credentials can be overwritten using credentials passed as an argument constructor
      */
@@ -104,7 +120,7 @@ class ClientTest extends TestCase
         );
 
         $this->httpClientMock->method('getStatus')->willReturn(200);
-        $this->httpClientMock->expects($this->at(2))->method('addHeader')->with('Authorization', $credentials);
+        $this->httpClientMock->expects($this->at(1))->method('addHeader')->with('Authorization', $credentials);
         $this->httpClientMock->method('getBody')->willReturn('{}');
         $this->serializerMock->expects($this->once())->method('unserialize')->willReturn([]);
 
