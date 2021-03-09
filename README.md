@@ -1,3 +1,7 @@
+# DEPRECATED
+Since v2.0 base Magento 2 module supports NG, therefore using this module is obsolete.
+If you use this  module, please consider using recent version of Magento2 module
+
 # FACT-Finder® NG Web Components for Magento 2
 
 This module ensures the compatibility of our Magento 2 module with FACT-Finder® NG.
