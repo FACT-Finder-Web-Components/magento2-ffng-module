@@ -14,8 +14,6 @@ use Omikron\FactfinderNG\Model\Api\CredentialsFactory;
 
 class Client implements ApiClientInterface
 {
-    private const TRACKING_RESPONSE_SUCCESS = 'OK';
-
     /** @var ClientFactory */
     private $httpClientFactory;
 
@@ -62,7 +60,7 @@ class Client implements ApiClientInterface
             }
 
             if ($httpClient->getStatus() == 200) {
-                if ($httpClient->getBody() && $httpClient->getBody() !== self::TRACKING_RESPONSE_SUCCESS) {
+                if ($httpClient->getBody()) {
                     return (array) $this->serializer->unserialize($httpClient->getBody());
                 } else {
                     return $httpClient->getHeaders();

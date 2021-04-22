@@ -88,21 +88,6 @@ class ClientTest extends TestCase
         $this->assertArrayHasKey('Access-Control-Allow-Credentials', $response, 'Correct response in this case should contains contains response headers');
     }
 
-    public function test_handle_successful_tracking_requests()
-    {
-        $this->httpClientMock->method('getBody')->willReturn('OK');
-        $this->httpClientMock->method('getHeaders')->willReturn([]);
-        $this->httpClientMock->method('getStatus')->willReturn(200);
-
-        $client = (new ObjectManager($this))->getObject(Client::class, [
-            'clientFactory'      => $this->createConfiguredMock(ClientFactory::class, ['create' => $this->httpClientMock]),
-            'serializer'         => new Json(),
-            'credentialsFactory' => $this->credentialsFactoryMock,
-        ]);
-
-        $this->assertIsArray($client->sendRequest('http://fake-ff-server.com/rest/v3/tracking/cart', []));
-    }
-
     /**
      * @testdox The API credentials can be overwritten using credentials passed as an argument constructor
      */

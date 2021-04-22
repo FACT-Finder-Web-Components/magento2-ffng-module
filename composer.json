@@ -12,7 +12,7 @@
   "require": {
     "php": "^7.1",
     "ext-curl": "*",
-    "omikron/magento2-factfinder": "^1.5"
+    "omikron/magento2-factfinder": "^1.7"
   },
   "require-dev": {
     "magento/magento-coding-standard": "^4.0",
