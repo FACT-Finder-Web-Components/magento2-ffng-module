@@ -1,3 +1,8 @@
+# DEPRECATED
+[Version 2](https://github.com/FACT-Finder-Web-Components/magento2-module/tree/release/2.x) of Magento2 module is comatible with FACT-Finder® NG and this sub-module is no longer required.
+
+Since the support of [version 1](https://github.com/FACT-Finder-Web-Components/magento2-module/tree/release/1.x) will be ceased soon, this NG sub-module is also deprecated. If you still use version 1, please consider updating to the version 2.
+
 # FACT-Finder® NG Web Components for Magento 2
 
 This module ensures the compatibility of our Magento 2 module with FACT-Finder® NG.
