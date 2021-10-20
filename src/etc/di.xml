@@ -6,9 +6,6 @@
     <type name="Omikron\Factfinder\ViewModel\CategoryPath">
         <plugin name="ff.ng.viewmodel.categorypath" type="Omikron\FactfinderNG\Plugin\ViewModel\CategoryPath" />
     </type>
-    <type name="Omikron\Factfinder\Model\Api\Tracking">
-        <plugin name="ff.modify.tracking" type="Omikron\FactfinderNG\Plugin\Api\Tracking" />
-    </type>
     <type name="Omikron\Factfinder\Model\Api\PushImport">
         <plugin name="ff.modify.import" type="Omikron\FactfinderNG\Plugin\Api\PushImport" />
     </type>
